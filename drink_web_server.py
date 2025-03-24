@@ -9,6 +9,7 @@ from torchvision import transforms
 from ultralytics import YOLO
 import threading
 import urllib.request
+from torchvision import models
 
 MODEL_PATH = "drink_classifier.pt"
 MODEL_URL = "https://www.dropbox.com/scl/fi/qc9a30u3gmo87itwdsmrx/drink_classifier.pt?rlkey=lpzwdvd2lv93ipvm7vebdsz1h&dl=1"
@@ -63,7 +64,8 @@ def upload():
 
 # YOLO and classifier setup
 model_detect = YOLO("yolov8n.pt")
-model_classify = torch.hub.load("pytorch/vision:v0.10.0", "resnet18", pretrained=False)
+model_classify = models.resnet18()
+model_classify.fc = torch.nn.Linear(model_classify.fc.in_features, 3)
 model_classify.fc = torch.nn.Linear(model_classify.fc.in_features, 3)
 model_classify.load_state_dict(torch.load("drink_classifier.pt", map_location="cpu"))
 model_classify.eval()
