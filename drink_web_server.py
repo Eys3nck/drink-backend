@@ -8,6 +8,16 @@ from PIL import Image
 from torchvision import transforms
 from ultralytics import YOLO
 import threading
+import urllib.request
+
+MODEL_PATH = "drink_classifier.pt"
+MODEL_URL = "https://www.dropbox.com/scl/fi/qc9a30u3gmo87itwdsmrx/drink_classifier.pt?rlkey=lpzwdvd2lv93ipvm7vebdsz1h&dl=1"
+
+if not os.path.exists(MODEL_PATH):
+    print("🔽 Downloading model...")
+    urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
+    print("✅ Model downloaded.")
+
 
 app = Flask(__name__)
 CORS(app)  # Allow cross-origin for browser access
