@@ -12,7 +12,8 @@ import urllib.request
 from torchvision import models
 
 MODEL_PATH = "drink_classifier.pt"
-MODEL_URL = "https://limewire.com/d/aOXfq#EYAmzaPQmT"
+MODEL_URL = "https://www.dropbox.com/scl/fi/ajmgapj6cuzlhn26mu2c8/drink_classifier.pt?rlkey=0dfjp079qxvft6u79ssgi4svb&st=fz9avv15&dl=1
+"
 
 if not os.path.exists(MODEL_PATH):
     print("🔽 Downloading model...")
