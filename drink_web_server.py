@@ -19,9 +19,8 @@ if not os.path.exists(MODEL_PATH):
     urllib.request.urlretrieve(MODEL_URL, MODEL_PATH)
     print("✅ Model downloaded.")
 
-
 app = Flask(__name__)
-CORS(app)  # Allow cross-origin for browser access
+CORS(app, origins=["https://eys3nck.github.io"]) # Allow cross-origin for browser access
 
 latest_status = {"level": "full"}
 
