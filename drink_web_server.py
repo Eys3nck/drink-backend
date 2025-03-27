@@ -63,7 +63,8 @@ def upload():
     return jsonify({"level": drink_status})
 
 # YOLO and classifier setup
-model_detect = YOLO("yolov8n.pt")
+model_detect = YOLO("yolov8n.pt", task="detect")
+model_detect.fuse = lambda *args, **kwargs: model_detect  # Disable fuse()
 model_classify = models.resnet18()
 model_classify.fc = torch.nn.Linear(model_classify.fc.in_features, 3)
 model_classify.fc = torch.nn.Linear(model_classify.fc.in_features, 3)
